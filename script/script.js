@@ -5,10 +5,16 @@ function getRequest(reqUrl) {
     return httpRequest.responseText;
 }
 
-function getCryptocurrencyPrice(cryptocurrencyName){
+function getCryptocurrencyPrice(cryptocurrencyName) {
     return JSON.parse(getRequest(`https://api.binance.com/api/v3/ticker/price?symbol=${cryptocurrencyName}USDT`)).price;
 }
 
-document.getElementById("btc").innerHTML = getCryptocurrencyPrice("BTC") + " USDT";
-document.getElementById("eth").innerHTML = getCryptocurrencyPrice("ETH") + " USDT";
-document.getElementById("bnb").innerHTML = getCryptocurrencyPrice("BNB") + " USDT";
+function updateNow() {
+    document.getElementById("btc").innerHTML = parseFloat(getCryptocurrencyPrice("BTC")).toFixed(2) + " $";
+    document.getElementById("eth").innerHTML = parseFloat(getCryptocurrencyPrice("ETH")).toFixed(2) + " $";
+    document.getElementById("bnb").innerHTML = parseFloat(getCryptocurrencyPrice("BNB")).toFixed(2) + " $";
+}
+
+document.getElementById("btc").innerHTML = parseFloat(getCryptocurrencyPrice("BTC")).toFixed(2) + " $";
+document.getElementById("eth").innerHTML = parseFloat(getCryptocurrencyPrice("ETH")).toFixed(2) + " $";
+document.getElementById("bnb").innerHTML = parseFloat(getCryptocurrencyPrice("BNB")).toFixed(2) + " $";
